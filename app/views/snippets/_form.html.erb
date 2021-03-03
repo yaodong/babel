@@ -18,7 +18,9 @@
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <div data-controller="editor">
+      <%= form.text_area :content, data: {"editor-target": "editor"}%>
+    </div>
   </div>
 
   <div class="field">
