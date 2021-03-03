@@ -16,7 +16,6 @@ class SnippetsTest < ApplicationSystemTestCase
 
     fill_in "Content", with: @snippet.content
     fill_in "Language", with: @snippet.language
-    fill_in "User", with: @snippet.user_id
     click_on "Create Snippet"
 
     assert_text "Snippet was successfully created"
@@ -29,7 +28,6 @@ class SnippetsTest < ApplicationSystemTestCase
 
     fill_in "Content", with: @snippet.content
     fill_in "Language", with: @snippet.language
-    fill_in "User", with: @snippet.user_id
     click_on "Update Snippet"
 
     assert_text "Snippet was successfully updated"

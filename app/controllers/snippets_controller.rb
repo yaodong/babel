@@ -1,4 +1,5 @@
 class SnippetsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_snippet, only: %i[ show edit update destroy ]
 
   # GET /snippets or /snippets.json
@@ -22,6 +23,7 @@ class SnippetsController < ApplicationController
   # POST /snippets or /snippets.json
   def create
     @snippet = Snippet.new(snippet_params)
+    @snippet = current_user
 
     respond_to do |format|
       if @snippet.save
@@ -64,6 +66,6 @@ class SnippetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def snippet_params
-      params.require(:snippet).permit(:user_id, :description, :language, :content)
+      params.require(:snippet).permit(:description, :language, :content)
     end
 end

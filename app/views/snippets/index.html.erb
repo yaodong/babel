@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
       <th>Description</th>
       <th>Language</th>
       <th>Content</th>
@@ -16,7 +15,6 @@
   <tbody>
     <% @snippets.each do |snippet| %>
       <tr>
-        <td><%= snippet.user_id %></td>
         <td><%= snippet.description %></td>
         <td><%= snippet.language %></td>
         <td><%= snippet.content %></td>
