@@ -2,13 +2,19 @@ import { Controller } from "stimulus"
 import CodeMirror from "codemirror"
 
 export default class extends Controller {
-  static targets = ["editor"]
+  static targets = ["text"]
 
   connect() {
-    const editor = CodeMirror.fromTextArea(this.editorTarget, {
+    this.editor = CodeMirror.fromTextArea(this.textTarget, {
       lineNumbers: true,
       theme: 'zenburn'
     });
-    console.log(editor)
+  }
+
+  highlight(event) {
+    const selection = { from: this.editor.getCursor(true), to: this.editor.getCursor(false) }
+    this.editor.getDoc().markText(selection.from, selection.to, {
+      className: 'mark-highlight'
+    })
   }
 }

@@ -23,7 +23,7 @@ class SnippetsController < ApplicationController
   # POST /snippets or /snippets.json
   def create
     @snippet = Snippet.new(snippet_params)
-    @snippet = current_user
+    @snippet.user = current_user
 
     respond_to do |format|
       if @snippet.save
