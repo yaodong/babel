@@ -11,27 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :language %>
-    <%= form.text_field :language %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <div data-controller="editor">
-      <div data-editor-target="toolbar">
-        <button type="button" class="btn border border-gray-500 rounded-sm hover:bg-gray-50" data-action="editor#highlight">Highlight</button>
+  <div class="grid grid-cols-12 gap-4">
+    <div class="col-span-8">
+      <div class="field">
+        <%= form.label :language %>
+        <%= form.text_field :language %>
       </div>
-      <%= form.text_area :content, data: { "editor-target": "text" } %>
+      <div class="field">
+        <%= form.label :content %>
+        <div data-controller="editor">
+          <div data-editor-target="toolbar">
+            <button type="button" class="btn border border-gray-500 rounded-sm hover:bg-gray-50" data-action="editor#highlight">Highlight</button>
+          </div>
+          <%= form.text_area :content, data: { "editor-target": "text" } %>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4">
+      <div class="field">
+        <%= form.label :description %>
+        <%= form.rich_text_area :description %>
+      </div>
+      <div class="actions">
+        <%= form.submit %>
+      </div>
     </div>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.rich_text_area :description %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
