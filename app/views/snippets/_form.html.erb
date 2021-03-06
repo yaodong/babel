@@ -15,7 +15,7 @@
     <div class="col-span-8">
       <div class="field">
         <%= form.label :language %>
-        <%= form.text_field :language %>
+        <%= form.select :language, options_for_select: SnippetsHelper::LANGUAGE_MODES.keys %>
       </div>
       <div class="field">
         <%= form.label :content %>

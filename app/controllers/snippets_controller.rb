@@ -1,4 +1,6 @@
 class SnippetsController < ApplicationController
+  helper :snippets
+
   before_action :authenticate_user!
   before_action :set_snippet, only: %i[ show edit update destroy ]
 
