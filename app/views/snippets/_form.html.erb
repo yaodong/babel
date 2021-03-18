@@ -1,41 +1,43 @@
-<%= form_with(model: snippet) do |form| %>
-  <% if snippet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(snippet.errors.count, "error") %> prohibited this snippet from being saved:</h2>
+<div class="bg-white overflow-hidden shadow rounded-lg h-full flex">
+  <div class="px-4 py-5 sm:p-6 flex-grow h-full">
+    <%= form_with(model: snippet, class: 'h-full') do |form| %>
+      <% if snippet.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(snippet.errors.count, "error") %> prohibited this snippet from being saved:</h2>
 
-      <ul>
-        <% snippet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% snippet.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-8">
-      <div class="field">
-        <%= form.label :language %>
-        <%= form.select :language, options_for_select: SnippetsHelper::LANGUAGE_MODES.keys %>
-      </div>
-      <div class="field">
-        <%= form.label :content %>
-        <div data-controller="editor">
-          <div data-editor-target="toolbar">
-            <button type="button" class="btn border border-gray-500 rounded-sm hover:bg-gray-50" data-action="editor#highlight">Highlight</button>
+      <div class="grid grid-cols-12 gap-4 h-full flex">
+        <div class="col-span-8 flex flex-col">
+          <div class="flex-none">
+            <%= form.label :language %>
+            <%= form.select :language, options_for_select: SnippetsHelper::LANGUAGE_MODES.keys %>
           </div>
-          <%= form.text_area :content, data: { "editor-target": "text" } %>
+          <div class="flex-grow">
+            <div class="h-full" data-controller="editor">
+              <%= form.text_area :content, data: { "editor-target": "text" } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-4 flex flex-col">
+          <div class="flex-none">
+            &nbsp;
+          </div>
+          <div class="flex-grow flex flex-col description">
+            <%= form.rich_text_area :description %>
+          </div>
+          <div class="flex-none pt-2">
+            <%= form.submit class: 'submit'  %>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-span-4">
-      <div class="field">
-        <%= form.label :description %>
-        <%= form.rich_text_area :description %>
-      </div>
-      <div class="actions">
-        <%= form.submit %>
-      </div>
-    </div>
-  </div>
 
-<% end %>
+    <% end %>
+  </div>
+</div>
